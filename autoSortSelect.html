@@ -1,0 +1,53 @@
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
+<script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore.js"></script>
+<script type="text/javascript" src="https://github.com/joshaven/string_score/raw/master/string_score.js"></script>
+
+<script type="text/javascript">
+(function($) {
+
+    $.fn.autoSortSelect = function(method) {
+
+        var defaults = {
+            foo: 'bar'
+        }
+
+        var settings = {}
+
+        var methods = {
+
+            init : function(options) {
+                settings = $.extend({}, defaults, options)
+                return this.each(function() {
+                    var
+                        $element = $(this),
+                        element = this;
+                    // code goes here
+                });
+            },
+
+            foo_public_method: function() {
+                // code goes here
+            }
+
+        }
+
+        var helpers = {
+
+            foo_private_method: function() {
+                // code goes here
+            }
+
+        }
+
+        if (methods[method]) {
+            return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof method === 'object' || !method) {
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error( 'Method "' +  method + '" does not exist in autoSortSelect plugin!');
+        }
+
+    }
+
+})(jQuery);
+</script>
