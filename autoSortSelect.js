@@ -1,9 +1,3 @@
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
-<script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore.js"></script>
-<script type="text/javascript" src="https://github.com/joshaven/string_score/raw/master/string_score.js"></script>
-
-<script type="text/javascript">
-
 (function($) {
 
     $.fn.autoSortSelect = function(options, method) {
@@ -39,9 +33,9 @@
                         
                         $suggest.empty().hide(); // cleanup
                         
-                        _.each(settings.DATAZ, function(d){          // loop through our data
-                            d.score = d.name.score(val);    // score it based on user input
-                            suggestions.push(d);            // add it to our suggestions
+                        _.each(settings.DATAZ, function(d){     // loop through our data
+                            d.score = d.name.score(val);        // score it based on user input
+                            suggestions.push(d);                // add it to our suggestions
                         });
                         
                         // don't want any losers:
@@ -55,7 +49,7 @@
                         // add the suggestions to our list:
                         _.each(best, function(d){
                             console.log(settings);
-                            var id = typeof d.id != 'undefined' ? d.id : d.name,
+                            var id = typeof d.id != 'undefined' ? d.id : d.name.replace(' ','_'),
                                 $li = $('<li id="' + settings.id_prefix + id + '">'+d.name+'</li>').data('info', element);
                             $suggest.append($li);
                         });
@@ -91,11 +85,3 @@
     }
 
 })(jQuery);
-
-$( document ).ready(function(){
-    var stub = [{name:'something', id:3},{name:'something else'},{name:'whatever'}];
-    $( '#sort_this' ).autoSortSelect({DATAZ:stub, id_prefix:'test'});
-});
-</script>
-
-<input type="text" id="sort_this"></span>

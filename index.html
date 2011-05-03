@@ -1,0 +1,15 @@
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
+<script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore.js"></script>
+<script type="text/javascript" src="https://github.com/joshaven/string_score/raw/master/string_score.js"></script>
+<script type="text/javascript" src="autoSortSelect.js"></script>
+
+<script type="text/javascript">
+
+$( document ).ready(function(){
+    var stub = [{name:'something', id:3},{name:'something else'},{name:'whatever'}];
+    $( '#sort_this' ).autoSortSelect({DATAZ:stub});
+
+});
+</script>
+
+<input type="text" id="sort_this"></span>
