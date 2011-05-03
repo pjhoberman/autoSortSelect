@@ -6,8 +6,9 @@
 
 (function($) {
 
-    $.fn.autoSortSelect = function(DATAZ, options, method) {
+    $.fn.autoSortSelect = function(options, method) {
         var defaults = {
+            DATAZ: [],
             id_prefix: 'autoSortSelect_'
         }
 
@@ -38,7 +39,7 @@
                         
                         $suggest.empty().hide(); // cleanup
                         
-                        _.each(DATAZ, function(d){          // loop through our data
+                        _.each(settings.DATAZ, function(d){          // loop through our data
                             d.score = d.name.score(val);    // score it based on user input
                             suggestions.push(d);            // add it to our suggestions
                         });
@@ -93,7 +94,7 @@
 
 $( document ).ready(function(){
     var stub = [{name:'something', id:3},{name:'something else'},{name:'whatever'}];
-    $( '#sort_this' ).autoSortSelect(stub, {id_prefix:'test'});
+    $( '#sort_this' ).autoSortSelect({DATAZ:stub, id_prefix:'test'});
 });
 </script>
 
