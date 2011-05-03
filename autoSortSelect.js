@@ -3,7 +3,7 @@
     $.fn.autoSortSelect = function(options, method) {
         var defaults = {
             DATAZ: [],
-            id_prefix: 'autoSortSelect_'
+            css:{}
         }
 
         var settings = {}
@@ -12,14 +12,20 @@
 
             init : function(options) {
                 settings = $.extend({}, defaults, options)
-                console.log(settings);
+                
                 return this.each(function() {
                     var
                         $element = $(this),
-                        element = this;
+                        element = this,
+                        id_prefix = $element.attr('id') + '_';
+                    
+                    // bind the list item click
+                    $( '#' + id_prefix + 'suggest li' ).live('click', function(){
+                        $element.val( $(this).text() ).data('selected_option',$(this).attr('id'));
+                        $( '#' + id_prefix + 'suggest' ).slideUp();
+                    });
                         
-                    $( this ).bind('keyup focus', function(){
-                        // add some sort of trigger to insert .suggest or not, based on previous actions
+                    $element.bind('keyup focus', function(){
                         var val = $element.val(),
                             suggestions = [],
                             best;
@@ -27,9 +33,12 @@
                         if(val.length < 1) return; // no need if nothing is there
                         
                         if( ! $element.next().hasClass('suggest') )
-                            $element.after('<div class="suggest">test</div>');
+                            $element.after('<div class="suggest" id="' + id_prefix + 'suggest"></div>');
                         
                         var $suggest = $element.next('.suggest');
+                        
+                        // apply css -- this needs to be moved out of binding, but suggest doesn't always exist...
+                        $suggest.css(settings.css);
                         
                         $suggest.empty().hide(); // cleanup
                         
@@ -48,9 +57,8 @@
 
                         // add the suggestions to our list:
                         _.each(best, function(d){
-                            console.log(settings);
                             var id = typeof d.id != 'undefined' ? d.id : d.name.replace(' ','_'),
-                                $li = $('<li id="' + settings.id_prefix + id + '">'+d.name+'</li>').data('info', element);
+                                $li = $('<li id="' + id_prefix + id + '">'+d.name+'</li>').data('info', element);
                             $suggest.append($li);
                         });
                         

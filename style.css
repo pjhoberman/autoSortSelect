@@ -1,0 +1,21 @@
+.suggest {
+  display: none;
+  max-height: 150px;
+  overflow-y: auto;
+  width: 121px;
+  border: 1px solid #ccc;
+  padding: 2px;
+  background-color: white; }
+  .suggest li {
+    display: block;
+    padding: 2px 0; }
+  .suggest li:hover {
+    background-color: #ccc;
+    cursor: pointer; }
+  .suggest li.hide {
+    display: none; }
+  .suggest li.selected {
+    background-color: #999; }
+  .suggest .message {
+    color: #333; }
+
