@@ -9,30 +9,30 @@
 
 $( document ).ready(function(){
     var greek = [
-        {name:'alpha'},
-        {name:'beta'},
-        {name:'gamma'},
-        {name:'delta'},
-        {name:'epsilon'},
-        {name:'zeta'},
-        {name:'eta'},
-        {name:'theta'},
-        {name:'iota'},
-        {name:'kappa'},
-        {name:'lamda'},
-        {name:'mu'},
-        {name:'nu'},
-        {name:'xi'},
-        {name:'omikron'},
-        {name:'pi'},
-        {name:'rho'},
-        {name:'sigma'},
-        {name:'tau'},
-        {name:'upsilon'},
-        {name:'phi'},
-        {name:'chi'},
-        {name:'psi'},
-        {name:'omega'}
+        {val:0,word:'alpha'},
+        {val:1,word:'beta'},
+        {val:2,word:'gamma'},
+        {val:3,word:'delta'},
+        {val:4,word:'epsilon'},
+        {val:5,word:'zeta'},
+        {val:6,word:'eta'},
+        {val:7,word:'theta'},
+        {val:8,word:'iota'},
+        {val:9,word:'kappa'},
+        {val:10,word:'lamda'},
+        {val:11,word:'mu'},
+        {val:12,word:'nu'},
+        {val:13,word:'xi'},
+        {val:14,word:'omikron'},
+        {val:15,word:'pi'},
+        {val:16,word:'rho'},
+        {val:17,word:'sigma'},
+        {val:18,word:'tau'},
+        {val:19,word:'upsilon'},
+        {val:20,word:'phi'},
+        {val:21,word:'chi'},
+        {val:22,word:'psi'},
+        {val:23,word:'omega'}
         ],        
         countries = [
         {name:"Afghanistan"},
@@ -238,8 +238,8 @@ $( document ).ready(function(){
         {name:"Zimbabwe"}
         ];
 
-    $( '#greek' ).autoSortSelect({DATAZ:greek});
-    $( '#countries' ).autoSortSelect({DATAZ:countries, css:{width:300}});
+    $( '#greek' ).autoSortSelect({DATAZ:greek, input_css:{color:'red'}, name:'word', id:'val', id_prefix:'roman'});
+    $( '#countries' ).autoSortSelect({DATAZ:countries, select_css:{width:300}, data_attr:'foo'});
     
 
 });

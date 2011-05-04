@@ -2,8 +2,13 @@
 
     $.fn.autoSortSelect = function(options, method) {
         var defaults = {
-            DATAZ: [],
-            css:{}
+            DATAZ: [],                  // the data
+            name:'name',                // the key in DATAZ where the text to sort on rests
+            id:'id',                    // the key in DATAZ where the id for each element rests
+            id_prefix:'',               // what to prefix the element ids. defaults to the input id, then 'autoSelectSort'
+            input_css:{},               // css to apply to the input. not necessary, but keeps things local
+            select_css:{},              // css to apply to the select
+            data_attr:'autosortselect'  // data-attr of input when you choose an item
         }
 
         var settings = {}
@@ -17,11 +22,21 @@
                     var
                         $element = $(this),
                         element = this,
-                        id_prefix = $element.attr('id') + '_';
+                        id_prefix = 
+                            settings.id_prefix == '' ? 
+                                $element.attr('id') == ''? 'autoSelectSort_' : $element.attr('id')
+                                + '_' : settings.id_prefix;
+                    
+                    // input css
+                    $element.css(settings.input_css);
                     
                     // bind the list item click
                     $( '#' + id_prefix + 'suggest li' ).live('click', function(){
-                        $element.val( $(this).text() ).data('selected_option',$(this).attr('id'));
+                        var value = $(this).attr('id').replace(id_prefix,'');
+                        $element
+                            .val( $(this).text() )
+                            .data('selected_option',value)
+                            .attr('data-' + settings.data_attr,value);
                         $( '#' + id_prefix + 'suggest' ).slideUp();
                     });
                         
@@ -38,12 +53,12 @@
                         var $suggest = $element.next('.suggest');
                         
                         // apply css -- this needs to be moved out of binding, but suggest doesn't always exist...
-                        $suggest.css(settings.css);
+                        $suggest.css(settings.select_css);
                         
                         $suggest.empty().hide(); // cleanup
                         
                         _.each(settings.DATAZ, function(d){     // loop through our data
-                            d.score = d.name.score(val);        // score it based on user input
+                            d.score = d[settings.name].score(val);        // score it based on user input
                             suggestions.push(d);                // add it to our suggestions
                         });
                         
@@ -57,8 +72,8 @@
 
                         // add the suggestions to our list:
                         _.each(best, function(d){
-                            var id = typeof d.id != 'undefined' ? d.id : d.name.replace(' ','_'),
-                                $li = $('<li id="' + id_prefix + id + '">'+d.name+'</li>').data('info', element);
+                            var id = typeof d[settings.id] != 'undefined' ? d[settings.id] : d[settings.name].replace(' ','_'),
+                                $li = $('<li id="' + id_prefix + id + '">'+d[settings.name]+'</li>').data('info', element);
                             $suggest.append($li);
                         });
                         

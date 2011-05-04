@@ -1,0 +1,20 @@
+This plugin attaches a selectable list of sorted items to an input.
+
+Dependencies:
+    jQuery
+    Underscore
+    String Score
+    
+Usage:
+    $( selector ).autoSortSelect(options)
+    Clicking on an item will set the text of the input to that item's text, set the input's .data('selected_option') to the resulting id, and set data-autosortselect to the id.
+    
+Options:
+    DATAZ - An array of JSON object. Each must have a key of 'name', unless otherwise specified
+    name - The key in DATAZ where each item's text can be found
+    id - The key in DATAZ to set each item's id to
+    id_prefix - Each item gets an id of the input's id plus (if it exists, otherwise it is set to autoSortSelect) the selector's id. You can override the prefix here.
+    input_css - CSS object (example: {color:'#000',height:100})
+        I don't think this one is required.. since you can just edit the input yourself. but.. why not.
+    select_css - CSS object (example: {color:'#000',height:100})
+    data-attr - the data attr of the input, set to the selected item's id
