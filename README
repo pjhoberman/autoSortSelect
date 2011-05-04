@@ -26,4 +26,7 @@ To do:
     Make the README prettier
     Keyboard commands
         up and down arrows to scroll
-        enter / tab to select
+            force box to scroll with scrolling
+            return to top at bottom, and bottom at top
+        enter / tab / right to select
+        eventually need to kill all keypress besides letters.. maybe stop sorting unless input changes?

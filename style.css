@@ -9,7 +9,8 @@
   .suggest li {
     display: block;
     padding: 2px 0; }
-  .suggest li:hover {
+  .suggest li:hover, 
+  .suggest .selected {
     background-color: #ccc;
     cursor: pointer; }
   .suggest li.hide {
