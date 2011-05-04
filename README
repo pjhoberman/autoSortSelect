@@ -18,3 +18,6 @@ Options:
         I don't think this one is required.. since you can just edit the input yourself. but.. why not.
     select_css - CSS object (example: {color:'#000',height:100})
     data-attr - the data attr of the input, set to the selected item's id
+    
+To do:
+    Make the README prettier
