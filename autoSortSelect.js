@@ -81,18 +81,6 @@
                     }); // the binding
                     
                 }); // the each
-            },
-
-            foo_public_method: function() {
-                // code goes here
-            }
-
-        }
-
-        var helpers = {
-
-            foo_private_method: function() {
-                // code goes here
             }
 
         }
