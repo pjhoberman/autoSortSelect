@@ -1,7 +1,7 @@
 This plugin attaches a selectable list of sorted items to an input.
 
 Demo:
-    http://jsfiddle.net/nVHKG/
+    http://jsfiddle.net/ETatp/
 
 Dependencies:
     jQuery
