@@ -1,5 +1,8 @@
 This plugin attaches a selectable list of sorted items to an input.
 
+Demo:
+    http://jsfiddle.net/nVHKG/
+
 Dependencies:
     jQuery
     Underscore
