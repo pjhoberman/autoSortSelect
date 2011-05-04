@@ -2,9 +2,9 @@
 
     $.fn.autoSortSelect = function(options, method) {
         var defaults = {
-            DATAZ: [],                  // the data
-            name:'name',                // the key in DATAZ where the text to sort on rests
-            id:'id',                    // the key in DATAZ where the id for each element rests
+            data: [],                  // the data
+            name:'name',                // the key in data where the text to sort on rests
+            id:'id',                    // the key in data where the id for each element rests
             id_prefix:'',               // what to prefix the element ids. defaults to the input id, then 'autoSelectSort'
             input_css:{},               // css to apply to the input. not necessary, but keeps things local
             select_css:{},              // css to apply to the select
@@ -57,7 +57,7 @@
                         
                         $suggest.empty().hide(); // cleanup
                         
-                        _.each(settings.DATAZ, function(d){     // loop through our data
+                        _.each(settings.data, function(d){     // loop through our data
                             d.score = d[settings.name].score(val);        // score it based on user input
                             suggestions.push(d);                // add it to our suggestions
                         });
