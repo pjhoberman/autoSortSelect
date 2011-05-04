@@ -114,20 +114,22 @@
                             else
                                 $el.next().children('.selected').removeClass('selected').next().addClass('selected');
                                 
-                            // capture scrolling
-                            //check for last
                         } // if
+                        
+                        else if( e.which == 38 ) { // up arrow
+                            if( $el.next().children('.selected').length == 0 )
+                                $el.next().children( 'li:last' ).addClass('selected');
+                                
+                            else
+                                $el.next().children('.selected').removeClass('selected').prev().addClass('selected');
+                        } // else if
                         
                         else if( e.which == 13 ){ // it's a trap! i mean, an enter!
                             if( $el.next().children('.selected').length != 0 )
                                 $el.next().children('.selected').click();
                         } // else if
                     } // if
-                    // 38 => up
-                    // 40 => down
-                    // 9  => tab
-                    // 13 => enter
-                });
+                }); // keyup
             } // key_commands
 
         } // helpers
