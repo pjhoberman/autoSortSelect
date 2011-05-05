@@ -36,9 +36,13 @@
                     
                     // set up key commands
                     helpers.key_commands($element);
-                        
+                    
+                    var old_value = ''; // store the previous value
                     $element.bind('keyup focus', function(e){
-                        if( $.inArray( e.which, settings.ignore_keys) < 0 ){ // don't do this if it's a down arrow
+                        // only do this whole thang if the value changed
+                        if( $element.val() != old_value ){
+                            old_value = $element.val();
+                            
                             var val = $element.val(),
                                 suggestions = [],
                                 best;
@@ -75,8 +79,12 @@
                                 $suggest.append($li);
                             });
                             
-                            $suggest.show(); // the big reveal
-                        } // key check
+                            $suggest
+                                .show() // the big reveal
+                                .children().each(function(){
+                                    $( this ).attr('data-scroll-top',$(this).offset().top - $suggest.offset().top)
+                                });
+                        } // old val check
                     }); // the binding
                     
                 }); // the each
@@ -104,30 +112,52 @@
             }, // bind_list_events
             
             key_commands: function($el){
-                $el.keyup(function(e){
+                
+                $el.keydown(function(e){
+                    var suggestions = $el.next(),
+                        height = suggestions.height(),
+                        pressed = e.which,
+                        height = suggestions.height(),
+                        scrolled = suggestions.scrollTop(),
+                        offset_top = suggestions.offset() ? suggestions.offset().top : 0; // was getting some null errors without the ternary
+                            
                     if( $el.next().hasClass('suggest')){ // make sure the suggest box is there
-                        if( e.which == 40 ){ // and that they pressed down
-                            // clean this up - make a var for all this junk
-                            if( $el.next().children('.selected').length == 0 )
-                                $el.next().children( 'li:first' ).addClass('selected');
+                        if( pressed == 40 ){ // and that they pressed down
+                            if( suggestions.children('.selected').length == 0 )
+                                suggestions.children( 'li:first' ).addClass('selected');
                             
                             else
-                                $el.next().children('.selected').removeClass('selected').next().addClass('selected');
+                                suggestions.children('.selected').removeClass('selected').next().addClass('selected');
                                 
                         } // if
                         
-                        else if( e.which == 38 ) { // up arrow
-                            if( $el.next().children('.selected').length == 0 )
-                                $el.next().children( 'li:last' ).addClass('selected');
+                        else if( pressed == 38 ) { // up arrow
+                            if( suggestions.children('.selected').length == 0 )
+                                suggestions.children( 'li:last' ).addClass('selected');
                                 
                             else
-                                $el.next().children('.selected').removeClass('selected').prev().addClass('selected');
+                                suggestions.children('.selected').removeClass('selected').prev().addClass('selected');
                         } // else if
                         
-                        else if( e.which == 13 ){ // it's a trap! i mean, an enter!
-                            if( $el.next().children('.selected').length != 0 )
-                                $el.next().children('.selected').click();
+                        else if( pressed == 13 || pressed == 39 ){ // it's a trap! i mean, an enter! or a right arrow
+                            if( suggestions.children('.selected').length != 0 )
+                                suggestions.children('.selected').click().removeClass('selected');
                         } // else if
+                        
+                        
+                        // smooth scrolling around the bend.
+                        
+                        var selected = suggestions.children('.selected'),
+                            selected_scroll_top = selected.attr('data-scroll-top'),
+                            selected_offset_top = selected.offset() ? selected.offset().top - offset_top : offset_top,
+                            selected_height = selected.height();
+                        
+                        if( selected_scroll_top > suggestions.scrollTop() + height )
+                            suggestions.scrollTop( selected_scroll_top - height + selected_height);
+                        
+                        else if( selected_offset_top  < 0)
+                            suggestions.scrollTop( selected_scroll_top );                        
+
                     } // if
                 }); // keyup
             } // key_commands

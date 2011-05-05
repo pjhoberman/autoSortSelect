@@ -22,11 +22,11 @@ Options:
     select_css - CSS object (example: {color:'#000',height:100})
     data-attr - the data attr of the input, set to the selected item's id
     
+Notes:
+    Set a max-height on the select_css to ensure a scrollbar / not an endless list. My example CSS has it set to 250px.
+    Key commands work. You can use your up and down arrows to scroll through the list, and the enter or right arrow to select an item.
+    
 To do:
     Make the README prettier
-    Keyboard commands
-        up and down arrows to scroll
-            force box to scroll with scrolling
-            return to top at bottom, and bottom at top
-        enter / tab / right to select
-        eventually need to kill all keypress besides letters.. maybe stop sorting unless input changes?
+        
+Much credit to Taylor Beseda at QuickLeft: http://quickleft.com/blog/search-suggestions-with-string-score
