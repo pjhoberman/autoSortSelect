@@ -137,9 +137,11 @@
                                 suggestions.children('.selected').removeClass('selected').prev().addClass('selected');
                         } // else if
                         
-                        else if( pressed == 13 || pressed == 39 ){ // it's a trap! i mean, an enter! or a right arrow
+                        else if( pressed == 13 || pressed == 39 || pressed == 9){ //enter, right arrow, tab
                             if( suggestions.children('.selected').length != 0 )
                                 suggestions.children('.selected').click().removeClass('selected');
+                            
+                            return false; // prevent form submission
                         } // else if
                         
                         
