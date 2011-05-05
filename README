@@ -4,9 +4,9 @@ Demo:
     http://jsfiddle.net/4eRx8/
 
 Dependencies:
-    jQuery
-    Underscore
-    String Score
+    jQuery - http://jquery.com
+    Underscore - http://documentcloud.github.com/underscore/
+    String Score - https://github.com/joshaven/string_score
     
 Usage:
     $( selector ).autoSortSelect(options)
@@ -30,3 +30,4 @@ To do:
     Make the README prettier
         
 Much credit to Taylor Beseda at QuickLeft: http://quickleft.com/blog/search-suggestions-with-string-score
+I also used the jquery plugin boilerplate as a base: http://stefangabos.ro/jquery/jquery-plugin-boilerplate/

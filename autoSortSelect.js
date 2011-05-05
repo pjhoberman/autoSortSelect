@@ -8,8 +8,7 @@
             id_prefix:'',               // what to prefix the element ids. defaults to the input id, then 'autoSelectSort'
             input_css:{},               // css to apply to the input. not necessary, but keeps things local
             select_css:{},              // css to apply to the select
-            data_attr:'autosortselect',  // data-attr of input when you choose an item
-            ignore_keys: [9,13,38,40]   
+            data_attr:'autosortselect'  // data-attr of input when you choose an item
         }
         
         var settings = {}
