@@ -8,7 +8,9 @@
 * [String Score](https://github.com/joshaven/string_score)
     
 ### Usage:
-    $( selector ).autoSortSelect(options)
+    $( selector ).autoSortSelect(options) // basic usage
+    $( '#your_input' ).autoSortSelect( {data: your_data} ); // minimal options
+    
 Clicking on an item will set the text of the input to that item's text, set the input's .data('selected_option') to the resulting id, and set data-autosortselect to the id.
     
 ### Options:
@@ -24,9 +26,7 @@ Clicking on an item will set the text of the input to that item's text, set the 
 ### Notes:
 Set a max-height on the select_css to ensure a scrollbar / not an endless list. My example CSS has it set to 250px.  
 Key commands work. You can use your up and down arrows to scroll through the list, and the enter or right arrow to select an item.
-    
-### TODO:
-Make the README prettier
+
         
 Much credit to [Taylor Beseda at QuickLeft](http://quickleft.com/blog/search-suggestions-with-string-score)
 I also used the [jQuery plugin boilerplate](http://stefangabos.ro/jquery/jquery-plugin-boilerplate/) as a base
