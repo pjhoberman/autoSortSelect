@@ -9,14 +9,14 @@
             input_css:{},               // css to apply to the input. not necessary, but keeps things local
             select_css:{},              // css to apply to the select
             data_attr:'autosortselect'  // data-attr of input when you choose an item
-        }
+        };
         
-        var settings = {}
+        var settings = {};
 
         var methods = {
 
             init : function(options) {
-                settings = $.extend({}, defaults, options)
+                settings = $.extend({}, defaults, options);
                 
                 return this.each(function() {
                     var
@@ -81,7 +81,7 @@
                             $suggest
                                 .show() // the big reveal
                                 .children().each(function(){
-                                    $( this ).attr('data-scroll-top',$(this).offset().top - $suggest.offset().top)
+                                    $( this ).attr('data-scroll-top',$(this).offset().top - $suggest.offset().top);
                                 });
                         } // old val check
                     }); // the binding
@@ -89,7 +89,7 @@
                 }); // the each
             } // init
 
-        } // methods
+        }; // methods
 
         var helpers = {
 
@@ -116,7 +116,6 @@
                     var suggestions = $el.next(),
                         height = suggestions.height(),
                         pressed = e.which,
-                        height = suggestions.height(),
                         scrolled = suggestions.scrollTop(),
                         offset_top = suggestions.offset() ? suggestions.offset().top : 0; // was getting some null errors without the ternary
                             
@@ -161,7 +160,7 @@
                 }); // keyup
             } // key_commands
 
-        } // helpers
+        }; // helpers
 
 
 
@@ -173,6 +172,6 @@
             $.error( 'Method "' +  method + '" does not exist in autoSortSelect plugin!');
         }
 
-    }
+    };
 
 })(jQuery);
