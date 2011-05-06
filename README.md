@@ -3,7 +3,7 @@
 [Demo](http://jsfiddle.net/4eRx8/)
 
 ### Dependencies:
-* [jQuery](http://jquery.com)
+* [jQuery](http://jquery.com) (1.4.4+ for the all_attrs option to work)
 * [Underscore](http://documentcloud.github.com/underscore/)
 * [String Score](https://github.com/joshaven/string_score)
     
