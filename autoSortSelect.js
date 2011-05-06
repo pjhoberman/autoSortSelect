@@ -8,7 +8,8 @@
             id_prefix:'',               // what to prefix the element ids. defaults to the input id, then 'autoSelectSort'
             input_css:{},               // css to apply to the input. not necessary, but keeps things local
             select_css:{},              // css to apply to the select
-            data_attr:'autosortselect'  // data-attr of input when you choose an item
+            data_attr:'autosortselect', // data-attr of input when you choose an item
+            all_attrs:false              // import all attributes from data
         };
         
         var settings = {};
@@ -74,7 +75,8 @@
                             // add the suggestions to our list:
                             _.each(best, function(d){
                                 var id = typeof d[settings.id] != 'undefined' ? d[settings.id] : d[settings.name].replace(' ','_'),
-                                    $li = $('<li id="' + id_prefix + id + '">'+d[settings.name]+'</li>').data('info', element);
+                                    attrs = settings.all_attrs ? helpers.build_attrs(d, true) : '',
+                                    $li = $('<li id="' + id_prefix + id + '" ' + attrs + '>'+d[settings.name]+'</li>').data('info', element);
                                 $suggest.append($li);
                             });
                             
@@ -98,12 +100,17 @@
                 
                 // bind the list item click
                 $( '#' + id_prefix + 'suggest li' ).live('click', function(){
-
                     var value = $(this).attr('id').replace(id_prefix,'');
                     element
                         .val( $(this).text() )
                         .data('selected_option',value)
                         .attr('data-' + settings.data_attr,value);
+                    
+                    var attrs = helpers.build_attrs($(this).data(),false);
+                    for( var key in attrs){
+                        if (attrs.hasOwnProperty(key) && typeof attrs[key] !== 'object' && key !== settings.name && key !== settings.id  )
+                            element.attr( 'data-' + key, attrs[key] );
+                    }
 
                     $( '#' + id_prefix + 'suggest' ).slideUp();
                 }); // live
@@ -160,7 +167,29 @@
 
                     } // if
                 }); // keyup
-            } // key_commands
+            }, // key_commands
+            
+            build_attrs: function(d, string){
+                
+                if( typeof string === 'undefined')
+                    string = true;
+                
+                var attrs = string ? '':{};
+                    
+                for (var key in d) {
+                    if (d.hasOwnProperty(key) && key !== settings.name && key !== settings.id ) {
+                        if( string )
+                            attrs += ' data-' + key + '="' + d[key] + '"';
+                        
+                        else{
+                            attrs[key]=d[key];
+                        }
+                            
+                    }
+                }
+                
+                return attrs;
+            } // build_attrs
 
         }; // helpers
 

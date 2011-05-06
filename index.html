@@ -9,30 +9,30 @@
 
 $( document ).ready(function(){
     var greek = [
-        {val:0,word:'alpha'},
-        {val:1,word:'beta'},
-        {val:2,word:'gamma'},
-        {val:3,word:'delta'},
-        {val:4,word:'epsilon'},
-        {val:5,word:'zeta'},
-        {val:6,word:'eta'},
-        {val:7,word:'theta'},
-        {val:8,word:'iota'},
-        {val:9,word:'kappa'},
-        {val:10,word:'lamda'},
-        {val:11,word:'mu'},
-        {val:12,word:'nu'},
-        {val:13,word:'xi'},
-        {val:14,word:'omikron'},
-        {val:15,word:'pi'},
-        {val:16,word:'rho'},
-        {val:17,word:'sigma'},
-        {val:18,word:'tau'},
-        {val:19,word:'upsilon'},
-        {val:20,word:'phi'},
-        {val:21,word:'chi'},
-        {val:22,word:'psi'},
-        {val:23,word:'omega'}
+        {greek_html:'&#913',val:0,word:'alpha'},
+        {greek_html:'&#914',val:1,word:'beta'},
+        {greek_html:'&#915',val:2,word:'gamma'},
+        {greek_html:'&#916',val:3,word:'delta'},
+        {greek_html:'&#917',val:4,word:'epsilon'},
+        {greek_html:'&#918',val:5,word:'zeta'},
+        {greek_html:'&#919',val:6,word:'eta'},
+        {greek_html:'&#920',val:7,word:'theta'},
+        {greek_html:'&#921',val:8,word:'iota'},
+        {greek_html:'&#922',val:9,word:'kappa'},
+        {greek_html:'&#923',val:10,word:'lamda'},
+        {greek_html:'&#924',val:11,word:'mu'},
+        {greek_html:'&#925',val:12,word:'nu'},
+        {greek_html:'&#926',val:13,word:'xi'},
+        {greek_html:'&#927',val:14,word:'omikron'},
+        {greek_html:'&#928',val:15,word:'pi'},
+        {greek_html:'&#929',val:16,word:'rho'},
+        {greek_html:'&#930',val:17,word:'sigma'},
+        {greek_html:'&#931',val:18,word:'tau'},
+        {greek_html:'&#932',val:19,word:'upsilon'},
+        {greek_html:'&#933',val:20,word:'phi'},
+        {greek_html:'&#934',val:21,word:'chi'},
+        {greek_html:'&#934',val:22,word:'psi'},
+        {greek_html:'&#936',val:23,word:'omega'}
         ],        
         countries = [
         {name:"Afghanistan"},
@@ -239,7 +239,7 @@ $( document ).ready(function(){
         {name:"Zimbabwe"}
         ];
 
-    $( '#greek' ).autoSortSelect({data:greek, input_css:{color:'red'}, name:'word', id:'val', id_prefix:'roman'});
+    $( '#greek' ).autoSortSelect({data:greek, input_css:{color:'red'}, name:'word', id:'val', id_prefix:'roman', all_attrs:true});
     $( '#countries' ).autoSortSelect({data:countries, select_css:{width:300, height: 1000}, data_attr:'foo'});
     
 
